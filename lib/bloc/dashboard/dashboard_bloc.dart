@@ -27,6 +27,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   Stream<DashboardState> _mapStartEventToState() async* {
     yield LoadingState();
+    yield LatestFirmwaresState(
+        firmwares: await _repository.getLatestFirmwares());
 //    yield FetchState(speechsStream: _dataRepository.getSpeechsStream());
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fimifirm/datasource/api/api_datasource.dart';
 
 class Repository {
@@ -6,5 +8,10 @@ class Repository {
   // TODO Delete this function
   void foo() {
     print("foo");
+  }
+
+  Future<List<bool>> getLatestFirmwares() async {
+    sleep(const Duration(seconds: 3));
+    return <bool>[];
   }
 }
