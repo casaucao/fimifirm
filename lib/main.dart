@@ -1,10 +1,15 @@
+import 'package:bloc/bloc.dart';
+import 'package:fimifirm/bloc/simple_bloc_delegate.dart';
 import 'package:fimifirm/repository/repository.dart';
 import 'package:fimifirm/screen/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
