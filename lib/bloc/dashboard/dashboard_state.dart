@@ -1,10 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 abstract class DashboardState extends Equatable {
-  const DashboardState();
+  @override
+  List<Object> get props => [];
 }
 
 class InitialDashboardState extends DashboardState {
   @override
-  List<Object> get props => [];
+  String toString() => 'InitialDashboardState';
+}
+
+class LoadingState extends DashboardState {
+  @override
+  String toString() => 'LoadingState';
 }

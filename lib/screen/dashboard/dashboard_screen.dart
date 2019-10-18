@@ -18,8 +18,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appBar: AppBar(
         title: Text('Fimifirm - Get the latest firmware for Fimi X8 SE'),
       ),
-      body: Center(
-        child: Text('Hi there'),
+      body: BlocProvider(
+        builder: (context) => _dashboardBloc,
+        child: BlocBuilder<DashboardBloc, DashboardState>(
+          bloc: _dashboardBloc,
+          builder: (context, state) {
+            if (state is LoadingState) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return Container();
+          },
+        ),
       ),
     );
   }

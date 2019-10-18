@@ -20,6 +20,13 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   Stream<DashboardState> mapEventToState(
     DashboardEvent event,
   ) async* {
-    // TODO: Add Logic
+    if (event is StartEvent) {
+      yield* _mapStartEventToState();
+    }
+  }
+
+  Stream<DashboardState> _mapStartEventToState() async* {
+    yield LoadingState();
+//    yield FetchState(speechsStream: _dataRepository.getSpeechsStream());
   }
 }
