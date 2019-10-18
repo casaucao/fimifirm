@@ -1,0 +1,14 @@
+:method: GET
+:path: /fimi-cms-web-interface/v3/firmware/getFirmwareDetail?fimiId=51908011401231&clientType=0&user_type=2&clientVersion=V1.0.17&signMsg=3cea24a437692edfd0c0c4faf3a81778
+:authority: paas-frankfurt.fimi.com
+:scheme: https
+user-agent: Imooc-Mobile
+accept-encoding: gzip
+
+---
+curl -H 'Host: paas-frankfurt.fimi.com' -H 'user-agent: Imooc-Mobile' --compressed 'https://paas-frankfurt.fimi.com/fimi-cms-web-interface/v3/firmware/getFirmwareDetail?fimiId=51908011401231&clientType=0&user_type=2&clientVersion=V1.0.17&signMsg=3cea24a437692edfd0c0c4faf3a81778'
+
+---
+https://paas-frankfurt.fimi.com/fimi-cms-web-interface/v3/firmware/getFirmwareDetail?fimiId=51908011401231&clientType=0&user_type=2&clientVersion=V1.0.17&signMsg=3cea24a437692edfd0c0c4faf3a81778
+
+---

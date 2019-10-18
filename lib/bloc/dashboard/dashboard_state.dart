@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:fimifirm/model/firmware.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -24,7 +25,7 @@ class LoadingState extends DashboardState {
 }
 
 class LatestFirmwaresState extends DashboardState {
-  final List<bool> firmwares;
+  final List<Firmware> firmwares;
 
   LatestFirmwaresState({@required this.firmwares}) : super([firmwares]);
 

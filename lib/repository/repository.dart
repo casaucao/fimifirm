@@ -1,4 +1,5 @@
 import 'package:fimifirm/datasource/api/api_datasource.dart';
+import 'package:fimifirm/model/firmware.dart';
 
 class Repository {
   final ApiDatasource _apiDatasource = ApiDatasource();
@@ -8,9 +9,8 @@ class Repository {
     print("foo");
   }
 
-  Future<List<bool>> getLatestFirmwares() async {
-    // TODO
-//    return _apiDatasource.fetchLatestFirmwares();
-    return <bool>[];
+  Future<List<Firmware>> getLatestFirmwares() async {
+    await _apiDatasource.fetchLatestFirmwares();
+    return <Firmware>[];
   }
 }
