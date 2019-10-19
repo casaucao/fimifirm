@@ -6,15 +6,13 @@ import 'package:http/http.dart' as http;
 
 class ApiDatasource {
   RestClient _restClient = RestClient(Dio());
+  ApiFirmwareEntityMapper _firmwareMapper = ApiFirmwareEntityMapper();
 
   Future<http.Response> fetchPost() async {
     return http.get('https://jsonplaceholder.typicode.com/posts/1');
   }
 
   Future<List<Firmware>> fetchLatestFirmwares() async {
-    List<ApiFirmwareEntity> apiFirmwareEntities =
-        await _restClient.getFirmwareEntities();
-    print(apiFirmwareEntities);
-    return [];
+    return (await _restClient.getFirmwareEntities()).map(_firmwareMapper.from);
   }
 }

@@ -10,7 +10,6 @@ class Repository {
   }
 
   Future<List<Firmware>> getLatestFirmwares() async {
-    await _apiDatasource.fetchLatestFirmwares();
-    return <Firmware>[];
+    return await _apiDatasource.fetchLatestFirmwares();
   }
 }
