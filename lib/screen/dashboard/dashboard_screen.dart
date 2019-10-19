@@ -29,6 +29,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               );
             }
 
+            if (state is LatestFirmwaresState) {
+              // TODO build firmwares list
+              print(state.firmwares.length);
+            }
+
             return Container();
           },
         ),
