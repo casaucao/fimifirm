@@ -13,15 +13,22 @@ class _RestClient implements RestClient {
 
   final Dio _dio;
 
+  final String baseUrl =
+      'https://paas-frankfurt.fimi.com/fimi-cms-web-interface/v3/firmware/';
+
   @override
   getFirmwareEntities() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final Response<List<dynamic>> _result = await _dio.request('/tasks',
+    final Response<List<dynamic>> _result = await _dio.request(
+        '/getFirmwareDetail?fimiId=1',
         queryParameters: queryParameters,
         options: RequestOptions(
-            method: 'GET', headers: <String, dynamic>{}, extra: _extra),
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
         data: _data);
     var value = _result.data
         .map((dynamic i) =>

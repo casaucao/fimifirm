@@ -13,6 +13,8 @@ class ApiDatasource {
   }
 
   Future<List<Firmware>> fetchLatestFirmwares() async {
-    return (await _restClient.getFirmwareEntities()).map(_firmwareMapper.from);
+    return (await _restClient.getFirmwareEntities())
+        .data
+        .map(_firmwareMapper.from);
   }
 }
