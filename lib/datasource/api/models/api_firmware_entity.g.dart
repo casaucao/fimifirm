@@ -8,11 +8,29 @@ part of 'api_firmware_entity.dart';
 
 ApiFirmwareEntity _$ApiFirmwareEntityFromJson(Map<String, dynamic> json) {
   return ApiFirmwareEntity(
-    json['id'] as String,
+    json['fileEncode'] as String,
+    json['fileSize'] as int,
+    json['fileUrl'] as String,
+    json['logicVersion'] as int,
+    json['model'] as int,
+    json['type'] as int,
+    (json['sysNameI18N'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(k, e as String),
+    ),
+    (json['updateContentI18N'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(k, e as String),
+    ),
   );
 }
 
 Map<String, dynamic> _$ApiFirmwareEntityToJson(ApiFirmwareEntity instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'fileEncode': instance.fileEncode,
+      'fileSize': instance.fileSize,
+      'fileUrl': instance.fileUrl,
+      'logicVersion': instance.logicVersion,
+      'model': instance.model,
+      'type': instance.type,
+      'sysNameI18N': instance.sysNameI18N,
+      'updateContentI18N': instance.updateContentI18N,
     };

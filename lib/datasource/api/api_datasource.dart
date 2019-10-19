@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:fimifirm/datasource/api/models/api_firmware_entity.dart';
 import 'package:fimifirm/datasource/api/rest_client.dart';
@@ -5,8 +8,20 @@ import 'package:fimifirm/model/firmware.dart';
 import 'package:http/http.dart' as http;
 
 class ApiDatasource {
-  RestClient _restClient = RestClient(Dio());
+  RestClient _restClient;
   ApiFirmwareEntityMapper _firmwareMapper = ApiFirmwareEntityMapper();
+
+  ApiDatasource() {
+    Dio client = Dio();
+    (client.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      return client;
+    };
+
+    _restClient = RestClient(client);
+  }
 
   Future<http.Response> fetchPost() async {
     return http.get('https://jsonplaceholder.typicode.com/posts/1');
@@ -15,6 +30,15 @@ class ApiDatasource {
   Future<List<Firmware>> fetchLatestFirmwares() async {
     return (await _restClient.getFirmwareEntities())
         .data
-        .map(_firmwareMapper.from);
+        .map(_firmwareMapper.from)
+        .toList();
+//    GetFirmwareEntitiesResponse response =
+//        await _restClient.getFirmwareEntities();
+//
+//    List<Firmware> latestFirmwares = response.data.map<Firmware>((element) {
+//      print(element);
+//      return _firmwareMapper.from(element);
+//    }).toList();
+//    return latestFirmwares;
   }
 }
