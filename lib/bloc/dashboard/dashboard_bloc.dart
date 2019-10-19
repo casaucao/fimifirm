@@ -31,8 +31,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       yield LatestFirmwaresState(
           firmwares: await _repository.getLatestFirmwares());
     } catch (exception) {
-      print(exception.toString());
-      yield ErrorState(message: exception.toString());
+      yield ErrorState(exception: exception);
     }
   }
 }

@@ -34,10 +34,10 @@ class LatestFirmwaresState extends DashboardState {
 }
 
 class ErrorState extends DashboardState {
-  final String message;
+  final Exception exception;
 
-  ErrorState({@required this.message}) : super([message]);
+  ErrorState({@required this.exception}) : super([exception]);
 
   @override
-  String toString() => 'ErrorState: $message';
+  String toString() => 'ErrorState: ${exception.toString()}';
 }

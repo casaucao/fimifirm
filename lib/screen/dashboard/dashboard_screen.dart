@@ -24,7 +24,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           bloc: _dashboardBloc,
           listener: (context, state) {
             if (state is ErrorState) {
-              final snackBar = SnackBar(content: Text(state.message));
+              final snackBar =
+                  SnackBar(content: Text(state.exception.toString()));
               Scaffold.of(context).showSnackBar(snackBar);
             }
           },
@@ -43,9 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               }
 
               if (state is ErrorState) {
-                return Container(
-                  color: Colors.red,
-                );
+                return _buildErrorWidget(context, state.exception);
               }
 
               return Container();
@@ -62,5 +61,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
     Repository _repository = RepositoryProvider.of<Repository>(context);
     _dashboardBloc = DashboardBloc(repository: _repository);
     _dashboardBloc.add(StartEvent());
+  }
+
+  Widget _buildErrorWidget(BuildContext context, Exception exception) {
+    return Container(
+      color: Theme.of(context).colorScheme.error,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.error),
+            SizedBox(height: 10),
+            Text(exception.toString()),
+          ],
+        ),
+      ),
+    );
   }
 }

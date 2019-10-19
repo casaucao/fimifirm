@@ -30,6 +30,7 @@ dependencies:
   flutter_bloc: ^0.22.1
   equatable: ^0.6.1
   retrofit: ^1.0.1
+  dio: ^3.0.3
 
 
 dev_dependencies:
