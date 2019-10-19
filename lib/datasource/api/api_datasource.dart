@@ -32,13 +32,5 @@ class ApiDatasource {
         .data
         .map(_firmwareMapper.from)
         .toList();
-//    GetFirmwareEntitiesResponse response =
-//        await _restClient.getFirmwareEntities();
-//
-//    List<Firmware> latestFirmwares = response.data.map<Firmware>((element) {
-//      print(element);
-//      return _firmwareMapper.from(element);
-//    }).toList();
-//    return latestFirmwares;
   }
 }
