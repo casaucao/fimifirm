@@ -20,22 +20,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       body: BlocProvider(
         builder: (context) => _dashboardBloc,
-        child: BlocBuilder<DashboardBloc, DashboardState>(
+        child: BlocListener(
           bloc: _dashboardBloc,
-          builder: (context, state) {
-            if (state is LoadingState) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
+          listener: (context, state) {
+            if (state is ErrorState) {
+              final snackBar = SnackBar(content: Text(state.message));
+              Scaffold.of(context).showSnackBar(snackBar);
             }
-
-            if (state is LatestFirmwaresState) {
-              // TODO build firmwares list
-              print(state.firmwares.length);
-            }
-
-            return Container();
           },
+          child: BlocBuilder<DashboardBloc, DashboardState>(
+            bloc: _dashboardBloc,
+            builder: (context, state) {
+              if (state is LoadingState) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (state is LatestFirmwaresState) {
+                // TODO build firmwares list
+                print(state.firmwares.length);
+              }
+
+              if (state is ErrorState) {
+                return Container(
+                  color: Colors.red,
+                );
+              }
+
+              return Container();
+            },
+          ),
         ),
       ),
     );
