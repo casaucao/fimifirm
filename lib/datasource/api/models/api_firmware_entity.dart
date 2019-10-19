@@ -34,8 +34,14 @@ class ApiFirmwareEntity {
 class ApiFirmwareEntityMapper extends MapperFrom<Firmware, ApiFirmwareEntity> {
   @override
   Firmware from(ApiFirmwareEntity data) {
-    // TODO fill the class
-    final Firmware firmware = Firmware(model: 3);
-    return firmware;
+    return Firmware(
+        data.fileEncode,
+        data.fileSize,
+        data.fileUrl,
+        data.logicVersion,
+        data.model,
+        data.type,
+        data.sysNameI18N['en_US'],
+        data.updateContentI18N['en_US']);
   }
 }
