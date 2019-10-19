@@ -32,3 +32,12 @@ class LatestFirmwaresState extends DashboardState {
   @override
   String toString() => 'LatestFirmwaresState';
 }
+
+class ErrorState extends DashboardState {
+  final String message;
+
+  ErrorState({@required this.message}) : super([message]);
+
+  @override
+  String toString() => 'ErrorState: $message';
+}
