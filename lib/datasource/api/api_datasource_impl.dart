@@ -15,7 +15,9 @@ class ApiDatasourceImpl implements ApiDatasource {
   ApiDatasourceImpl() {
     Dio client = Dio();
 
-    client.interceptors.add(LogInterceptor());
+    if (!kReleaseMode) {
+      client.interceptors.add(LogInterceptor());
+    }
 
     if (!kIsWeb) {
       var httpClientCreate = (client) {
