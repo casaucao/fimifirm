@@ -1,4 +1,7 @@
+import 'dart:math' as math;
+
 import 'package:fimifirm/bloc/dashboard/bloc.dart';
+import 'package:fimifirm/model/firmware.dart';
 import 'package:fimifirm/repository/repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               }
 
               if (state is LatestFirmwaresState) {
-                // TODO build firmwares list
-                print(state.firmwares.length);
+                return _buildLatestFirmwaresWidget(context, state.firmwares);
               }
 
               if (state is ErrorState) {
@@ -76,6 +78,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildLatestFirmwaresWidget(
+      BuildContext context, List<Firmware> firmwares) {
+    double width = MediaQuery.of(context).size.width;
+    print('Screen width: $width');
+    double ratio = 6 / 1870;
+    int columns = (width * ratio).round();
+    columns = math.max(1, columns);
+
+    return GridView.builder(
+      itemCount: firmwares.length,
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: columns),
+      itemBuilder: (BuildContext context, int index) {
+        Firmware firmware = firmwares[index];
+        return Center(
+          child: Text(firmware.sysNameI18N),
+        );
+      },
     );
   }
 }
