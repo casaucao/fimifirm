@@ -13,8 +13,7 @@ class _RestClient implements RestClient {
 
   final Dio _dio;
 
-  final String baseUrl =
-      'https://paas-frankfurt.fimi.com/fimi-cms-web-interface/v3/firmware/';
+  final String baseUrl = 'https://api.allorigins.win/';
 
   @override
   getFirmwareEntities() async {
@@ -22,7 +21,7 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/getFirmwareDetail?fimiId=1',
+        '/raw?url=http%3A%2F%2Fpaas-frankfurt.fimi.com%2Ffimi-cms-web-interface%2Fv3%2Ffirmware%2FgetFirmwareDetail%3FfimiId%3D1',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
