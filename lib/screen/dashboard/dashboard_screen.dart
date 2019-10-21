@@ -1,8 +1,7 @@
-import 'dart:math' as math;
-
 import 'package:fimifirm/bloc/dashboard/bloc.dart';
 import 'package:fimifirm/model/firmware.dart';
 import 'package:fimifirm/repository/repository.dart';
+import 'package:fimifirm/screen/dashboard/firmware_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -83,22 +82,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildLatestFirmwaresWidget(
       BuildContext context, List<Firmware> firmwares) {
-    double width = MediaQuery.of(context).size.width;
-    print('Screen width: $width');
-    double ratio = 6 / 1870;
-    int columns = (width * ratio).round();
-    columns = math.max(1, columns);
-
-    return GridView.builder(
-      itemCount: firmwares.length,
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: columns),
-      itemBuilder: (BuildContext context, int index) {
-        Firmware firmware = firmwares[index];
-        return Center(
-          child: Text(firmware.sysNameI18N),
+    return GridView.extent(
+      maxCrossAxisExtent: 400,
+      children: List.generate(firmwares.length, (index) {
+        return FirmwareWidget(
+          firmware: firmwares[index],
         );
-      },
+      }),
     );
   }
 }
