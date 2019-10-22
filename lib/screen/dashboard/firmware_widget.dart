@@ -15,46 +15,50 @@ class FirmwareWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: ListTile(
-                  leading: Icon(Icons.system_update),
-                  title: Text(_firmware.sysNameI18N),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.system_update),
+                    SizedBox(width: 4.0),
+                    Flexible(
+                      child: Text(
+                        _firmware.sysNameI18N + 'very large text',
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Text('Version: ${_firmware.logicVersion}'),
-                      Text(
-                        _firmware.updateContentI18N,
-                        style: TextStyle(),
-                        overflow: TextOverflow.ellipsis,
+                      Flexible(
+                        child: Text(
+                          _firmware.updateContentI18N +
+                              _firmware.updateContentI18N +
+                              _firmware.updateContentI18N +
+                              _firmware.updateContentI18N,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  child: ButtonTheme.fromButtonThemeData(
-                    data: ButtonTheme.of(context),
-                    child: ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('Download'),
-                          onPressed: () {},
-                        ),
-                      ],
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: () {},
+                      child: const Text('Download'),
                     ),
-                  ),
-                ),
-              ),
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
