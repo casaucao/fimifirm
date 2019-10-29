@@ -26,7 +26,7 @@ class FirmwareWidget extends StatelessWidget {
                     SizedBox(width: 4.0),
                     Flexible(
                       child: Text(
-                        _firmware.sysNameI18N + 'very large text',
+                        _firmware.sysNameI18N,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -39,10 +39,7 @@ class FirmwareWidget extends StatelessWidget {
                       Text('Version: ${_firmware.logicVersion}'),
                       Flexible(
                         child: Text(
-                          _firmware.updateContentI18N +
-                              _firmware.updateContentI18N +
-                              _firmware.updateContentI18N +
-                              _firmware.updateContentI18N,
+                          _firmware.updateContentI18N,
                           overflow: TextOverflow.fade,
                         ),
                       ),

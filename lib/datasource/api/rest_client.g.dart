@@ -14,7 +14,7 @@ class _RestClient implements RestClient {
   final Dio _dio;
 
   final String baseUrl =
-      'https://paas-frankfurt.fimi.com/fimi-cms-web-interface/v3/firmware/';
+      'https://4r2prhxoza.execute-api.eu-west-1.amazonaws.com/prod/';
 
   @override
   getFirmwareEntities() async {
@@ -22,7 +22,7 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final Response<Map<String, dynamic>> _result = await _dio.request(
-        'getFirmwareDetail?fimiId=51908011401231&clientType=0&user_type=2&clientVersion=V1.0.17&signMsg=3cea24a437692edfd0c0c4faf3a81778',
+        'getLatestFirmwares',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
