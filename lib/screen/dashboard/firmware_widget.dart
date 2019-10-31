@@ -1,3 +1,5 @@
+import 'dart:js' as js;
+
 import 'package:fimifirm/model/firmware.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +51,9 @@ class FirmwareWidget extends StatelessWidget {
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        js.context.callMethod("open", [_firmware.fileUrl]);
+                      },
                       child: const Text('Download'),
                     ),
                   ],
